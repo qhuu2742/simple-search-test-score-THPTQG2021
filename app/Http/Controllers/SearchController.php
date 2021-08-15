@@ -23,7 +23,7 @@ class SearchController extends Controller
 
     [
       'query.required' => 'Mày phải nhập số báo danh vào',
-      'query.min' => 'Số báo danh phải có 7 ký tự' //validate
+      'query.min' => 'Số báo danh phải có 7 ký tự' //validate.
     ]);
 
     $search_text = $request->input('query');
