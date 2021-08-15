@@ -23,20 +23,20 @@ class SearchController extends Controller
 
     [
       'query.required' => 'Mày phải nhập số báo danh vào',
-      'query.min' => 'Số báo danh phải có 7 ký tự'
+      'query.min' => 'Số báo danh phải có 7 ký tự' //validate
     ]);
 
     $search_text = $request->input('query');
-    
+
     $hcm       = DB::table('hcm')->where('SBD', 'LIKE', '%' . $search_text . '%');
     $ba        = DB::table('03_csv')->where('SBD', 'LIKE', '%' . $search_text . '%');
-    
+
     $countries = DB::table('02_csv')->where('SBD', 'LIKE', '%' . $search_text . '%')
     ->unionAll($ba)
     ->unionAll($hcm)
     ->paginate(2);
-    
-    
+
+
     return view('search', ['countries' => $countries]);
   }
 }
